@@ -206,6 +206,11 @@ func (e expr) GroupConcat() Expr {
 	return e.setE(clause.Expr{SQL: "GROUP_CONCAT(?)", Vars: []interface{}{e.RawExpr()}})
 }
 
+// Regexp ...
+func (e expr) Regexp(value string) Expr {
+	return e.regexp(value)
+}
+
 // ======================== comparison between columns ========================
 func (e expr) EqCol(col Expr) Expr {
 	return e.setE(clause.Expr{SQL: "? = ?", Vars: []interface{}{e.RawExpr(), col.RawExpr()}})
